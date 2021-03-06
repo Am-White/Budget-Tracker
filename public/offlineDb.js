@@ -1,7 +1,7 @@
 //Database for functionality of offline usage
 let db;
 
-const request = window.indexedDB.open("budget", 1);
+const request = window.indexedDB.open("offlineDb", 1);
 
 request.onupgradeneeded = function (event) {
     db = event.target.result;
