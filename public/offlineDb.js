@@ -1,14 +1,14 @@
 // db file for functionality offline
-
+const indexedDB = window.indexedDB || window.mozIndexedDB || webkitIndexedDB;
 let db;
 
 // Create a new db request for a offlineDb database.
-const request = window.indexedDB.open("offlineDb", 1);
+const request = indexedDB.open("offlineDb", 1);
 
 
 request.onupgradeneeded = function (event) {
     db = event.target.result;
-    const objectStore = db.createObjectStore("pending", {autoIncrement: true});
+    db.createObjectStore("pending", {autoIncrement: true});
 }
 
 // if success
