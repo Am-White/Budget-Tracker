@@ -15,7 +15,7 @@ app.use(express.static("public"));
 
 //Mongoose connection with mongodb through heroku
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/offlineDb", {
+  process.env.MONGODB_URI || "mongodb://localhost/budget", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex:true,
