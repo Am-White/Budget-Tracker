@@ -15,7 +15,15 @@ request.onsuccess = function (event) {
         checkDatabase();
     }
 }
+
 //If error = message
 request.onerror = function (event) {
     console.log("Error: " + event)
+}
+
+//Saving the record
+function saveRecord(record) {
+    const transaction = db.transaction(["pending"], "readwrite");
+    const pendingStore = transaction.objectStore("pending");
+    pendingStore.add(record);
 }
