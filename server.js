@@ -1,24 +1,26 @@
+
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://ame:Candyman1!@cluster0.ifbg0.mongodb.net/budget?retryWrites=true&w=majority";
+mongoose.connect(MONGODB_URI);
+
 app.use(logger("dev"));
+
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static("public"));
 
-//Mongoose connection with mongodb through heroku
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/budget" || "mongodb+srv://ame:Candyman1!@cluster0.ifbg0.mongodb.net/budget?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://localhost/budget", {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex:true,
   useFindAndModify: false
 });
 
