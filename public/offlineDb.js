@@ -1,14 +1,17 @@
-//Database for functionality of offline usage
+// db file for functionality offline
+
 let db;
 
+// Create a new db request for a offlineDb database.
 const request = window.indexedDB.open("offlineDb", 1);
+
 
 request.onupgradeneeded = function (event) {
     db = event.target.result;
     const objectStore = db.createObjectStore("pending", {autoIncrement: true});
-
 }
 
+// if success
 request.onsuccess = function (event) {
     db = event.target.result;
     if (navigator.onLine) {
@@ -16,18 +19,19 @@ request.onsuccess = function (event) {
     }
 }
 
-//If error = message
+// if error
 request.onerror = function (event) {
     console.log("Error: " + event)
 }
 
-//Saving the record
+// saveRecord
 function saveRecord(record) {
     const transaction = db.transaction(["pending"], "readwrite");
     const pendingStore = transaction.objectStore("pending");
     pendingStore.add(record);
 }
-// checkDatabase - when back online post saved transactions and clear indexedDB
+
+// checkDatabase
 function checkDatabase() {
     const transaction = db.transaction(["pending"], "readwrite");
     const pendingStore = transaction.objectStore("pending");
@@ -53,5 +57,6 @@ function checkDatabase() {
         }
     };
 }
+
 // listener
 window.addEventListener('online', checkDatabase);
