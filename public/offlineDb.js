@@ -3,7 +3,7 @@ const indexedDB = window.indexedDB || window.mozIndexedDB || webkitIndexedDB;
 let db;
 
 // Create a new db request for a offlineDb database.
-const request = indexedDB.open("offlineDb", 1);
+const request = indexedDB.open("budget", 1);
 
 
 request.onupgradeneeded = function (event) {
