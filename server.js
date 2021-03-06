@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://ame:Candyman1!@cluster0.ifbg0.mongodb.net/budget?retryWrites=true&w=majority";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://aybwhite@gmail.com:Candyman1!@cluster0.ifbg0.mongodb.net/budget?retryWrites=true&w=majority";
 mongoose.connect(MONGODB_URI);
 
 app.use(logger("dev"));
